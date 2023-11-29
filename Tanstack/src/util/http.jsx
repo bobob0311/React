@@ -1,5 +1,5 @@
 // 데이터 가져오기를 제어하는 모든 코드를 여기에 담는게 목적이다
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient, useMutation } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient();
 
