@@ -1,14 +1,17 @@
 // 데이터 가져오기를 제어하는 모든 코드를 여기에 담는게 목적이다
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient();
 
-export async function fetchEvents({ signal, searchTerm }) {
-    console.log(searchTerm);
+export async function fetchEvents({ signal, searchTerm, max }) {
     let url = 'http://localhost:3000/events';
 
-    if (searchTerm) {
+    if (searchTerm && max) {
+        url += '?search=' + searchTerm + '&max=' + max;
+    } else if (searchTerm) {
         url += '?search=' + searchTerm;
+    } else if (max) {
+        url += '?max=' + max;
     }
 
     const response = await fetch(url, { signal: signal });
